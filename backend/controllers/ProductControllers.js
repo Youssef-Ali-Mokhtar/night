@@ -14,4 +14,20 @@ const getProducts = (req, res) => {
          })
 }
 
-module.exports = { getProducts };
+const addProduct = (req, res) => {
+    const { name, price } = req.body;
+
+    const newProduct = new Product({ name, price });
+
+    newProduct.save()
+    .then(product => {
+        res.status(201).json({ message: 'Product added successfully', product });
+    })
+    .catch(err => {
+        console.log(err.message);
+        res.status(500).json({ error: 'Internal Server Error' });
+     })
+
+}
+
+module.exports = { getProducts, addProduct };
