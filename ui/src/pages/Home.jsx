@@ -11,8 +11,7 @@ const Home = () => {
                 return response.json();
             })
             .then(data => {
-                const { products } = data;
-                setProducts(products);
+                setProducts(data);
             })
             .catch(err => {
                 console.log(err.message);
@@ -29,7 +28,7 @@ const Home = () => {
             {
                 products.map(p => {
                     return <ProductCard
-                            key={p.id}
+                            key={p._id}
                             name={p.name}
                             price={p.price}
                         />

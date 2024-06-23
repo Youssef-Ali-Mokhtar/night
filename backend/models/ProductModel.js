@@ -1,31 +1,18 @@
-const products = [
-    {
-        id:'prod_1', 
-        name:'sneakers', 
-        price:100
-    },
-    {
-        id:'prod_2', 
-        name:'jacket', 
-        price:200
-    },
-    {
-        id:'prod_3', 
-        name:'shirt', 
-        price:150
-    },
-    {
-        id:'prod_4', 
-        name:'jeans', 
-        price:80
-    }
-];
-class Product {
+const mongoose = require('mongoose');
 
-    getProducts() {
-        return products;
-    }
+// Define the Product schema
+const productSchema = new mongoose.Schema({
+  name: {
+    type: String,
+    required: true,
+  },
+  price: {
+    type: Number,
+    required: true,
+  },
+});
 
-}
 
-module.exports = new Product();
+const Product = mongoose.model('Product', productSchema);
+
+module.exports = Product;
