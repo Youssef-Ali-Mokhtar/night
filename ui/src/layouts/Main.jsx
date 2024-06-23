@@ -1,13 +1,13 @@
 import MainClasses from './main.module.css';
 import { Routes, Route } from 'react-router-dom';
 import Home from '../pages/Home';
-import Details from '../pages/Details';
+import AddProduct from '../pages/AddProduct';
 
 const Main = () => {
     return ( <div className={MainClasses['main']}>
         <Routes>
             <Route path='/' element={<Home/>}/>
-            <Route path='/details' element={<Details/>}/>
+            <Route path='/add-product' element={<AddProduct/>}/>
         </Routes>
     </div> );
 }
