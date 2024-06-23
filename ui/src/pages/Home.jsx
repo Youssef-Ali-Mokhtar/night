@@ -2,38 +2,27 @@ import HomeClasses from './home.module.css';
 import ProductCard from '../components/ProductCard';
 import { useEffect, useState } from 'react';
 
-const productsData = [
-    {
-        id:'prod_1', 
-        name:'sneakers', 
-        price:100
-    },
-    {
-        id:'prod_2', 
-        name:'jacket', 
-        price:200
-    },
-    {
-        id:'prod_3', 
-        name:'shirt', 
-        price:150
-    },
-    {
-        id:'prod_4', 
-        name:'jeans', 
-        price:80
-    }
-];
-
 const Home = () => {
     const [products, setProducts] = useState([]);
     
+    const fetchProducts = () => {
+        fetch('http://localhost:4000/api/products/')
+            .then(response => {
+                return response.json();
+            })
+            .then(data => {
+                const { products } = data;
+                setProducts(products);
+            })
+            .catch(err => {
+                console.log(err.message);
+            })
+    }       
+
     useEffect(() => {
-        setProducts(productsData);
+        fetchProducts();
     }, [])
-    // const fetchProducts = () => {
-    //     fetch('')
-    // }
+
 
     return ( <div className={HomeClasses['home']}>
         <div className={HomeClasses['product-grid']}>
